@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>历史街区调查数据可视化</title>
+      <title>臭肥佬</title>
       <style>
             :root{
                   --max-width: 980px;
@@ -47,13 +47,143 @@
                   .container{margin: 16px;padding: 16px}
                   h1{font-size: 20px}
             }
+            img{
+               width:50%;
+               height:auto;
+               margin-left: 25%;
+               margin-right: 25%;
+            }
       </style>
 </head>
 <body>
-      <div class="container">
-            <h1>历史街区调查数据可视化</h1>
-            <p>本项目旨在通过数据可视化技术，展示历史街区的调查数据，帮助用户更直观地理解和分析这些数据。</p>
-            <footer>来源： 中国政府网之最臭的肥佬 · <time datetime="2025-03-05">2025-03-05 16:29</time></footer>
-      </div>
+        <div class="container">
+                  <h1>历史街区调查数据可视化</h1>
+                  <p>本项目旨在通过数据可视化技术，展示历史街区的调查数据，帮助用户更直观地理解和分析这些数据。</p>
+
+                  <div class="controls" style="margin:12px 0 18px 0;display:flex;gap:8px;align-items:center;">
+                          <button id="themeToggle" type="button">切换暗色/浅色</button>
+                          <button id="exportBtn" type="button">导出 PNG</button>
+                          <span id="status" style="color:var(--muted);font-size:13px;margin-left:8px"></span>
+                  </div>
+
+                  <div id="chart" style="height:360px;border-radius:6px;overflow:hidden;background:#fff"></div>
+
+                                    <footer>来源： 中国政府网之肥佬 · <time id="stamp" datetime="2025-03-05">2025-03-05 16:29</time></footer>
+                                    <div style="text-align:center;margin-top:12px;">
+                                          <img id="funnyImg" src="肥水.jpg" alt="肥水图片" class="interactive-img" style="max-width:320px;width:60%;height:auto;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);" />
+                                    </div>
+
+                                    <!-- 图片模态大图 -->
+                                    <div id="imgModal" class="img-modal" aria-hidden="true" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,12,24,0.75);align-items:center;justify-content:center;padding:24px;">
+                                          <div style="position:relative;max-width:1200px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                                                <img id="modalImg" src="肥水.jpg" alt="放大图" style="max-width:100%;max-height:100%;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
+                                                <button id="closeImg" aria-label="关闭" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);border:0;padding:8px 10px;border-radius:6px;cursor:pointer">关闭</button>
+                                                <a id="downloadImg" download="肥水.jpg" style="position:absolute;top:12px;right:84px;background:rgba(255,255,255,0.9);padding:8px 10px;border-radius:6px;text-decoration:none;color:#111;">下载</a>
+                                          </div>
+                                    </div>
+        </div>
+
+        <script src="echarts.js"></script>
+        <script>
+                  // 小型初始化脚本：示例图表、主题切换、导出，以及图片交互（hover/双击/模态/下载）
+                  (function(){
+                          var chartDom = document.getElementById('chart');
+                          var myChart = echarts.init(chartDom);
+                          var lightOption = {
+                                backgroundColor: '#ffffff',
+                                color: ['#2c7be5','#ff7f50','#91cc75'],
+                                tooltip: { trigger: 'axis' },
+                                xAxis: { type: 'category', data: ['A区','B区','C区','D区','E区'] },
+                                yAxis: { type: 'value' },
+                                series: [
+                                      { name: '样例值', type: 'bar', data: [12, 20, 15, 34, 22] }
+                                ]
+                          };
+                          var darkOption = JSON.parse(JSON.stringify(lightOption));
+                          darkOption.backgroundColor = '#0b1220';
+                          darkOption.color = ['#4fc3f7','#ffab91','#a5d6a7'];
+                          darkOption.tooltip = { backgroundColor: 'rgba(255,255,255,0.06)', textStyle:{color:'#fff'} };
+
+                          myChart.setOption(lightOption);
+
+                          // 主题切换（简单：切换 body 类并更新 chart）
+                          var themeToggle = document.getElementById('themeToggle');
+                          var isDark = false;
+                          themeToggle.addEventListener('click', function(){
+                                isDark = !isDark;
+                                document.body.classList.toggle('dark', isDark);
+                                if(isDark){ myChart.setOption(darkOption); document.getElementById('status').textContent='暗色模式'; }
+                                else { myChart.setOption(lightOption); document.getElementById('status').textContent='浅色模式'; }
+                                setTimeout(function(){ document.getElementById('status').textContent=''; }, 1500);
+                          });
+
+                          // 导出 PNG
+                          var exportBtn = document.getElementById('exportBtn');
+                          exportBtn.addEventListener('click', function(){
+                                var url = myChart.getDataURL({
+                                      type: 'png', pixelRatio: 2, backgroundColor: isDark? '#0b1220' : '#ffffff'
+                                });
+                                var a = document.createElement('a');
+                                a.href = url;
+                                a.download = 'chart.png';
+                                document.body.appendChild(a);
+                                a.click();
+                                a.remove();
+                          });
+
+                          // 更新 footer 时间为当前本地格式（可保留原 datetime）
+                          var stamp = document.getElementById('stamp');
+                          try{
+                                var now = new Date();
+                                var fmt = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+                                stamp.textContent = fmt;
+                                stamp.setAttribute('datetime', now.toISOString());
+                          }catch(e){ /* ignore */ }
+
+                          // 自适应重绘
+                          window.addEventListener('resize', function(){ myChart.resize(); });
+
+                          // ===== 图片交互逻辑 =====
+                          var img = document.getElementById('funnyImg');
+                          var modal = document.getElementById('imgModal');
+                          var modalImg = document.getElementById('modalImg');
+                          var closeBtn = document.getElementById('closeImg');
+                          var downloadLink = document.getElementById('downloadImg');
+                          var isGray = false;
+
+                          // Hover 样式通过 CSS（在行内样式外可扩展），这里加事件仅为可扩展交互
+                          img.style.transition = 'transform 220ms ease, filter 220ms ease';
+                          img.style.cursor = 'pointer';
+                          img.addEventListener('mouseenter', function(){ img.style.transform = 'scale(1.04)'; });
+                          img.addEventListener('mouseleave', function(){ img.style.transform = ''; });
+
+                          // 双击切换灰度
+                          img.addEventListener('dblclick', function(){
+                                isGray = !isGray;
+                                img.style.filter = isGray ? 'grayscale(100%)' : '';
+                          });
+
+                          // 单击打开模态大图
+                          img.addEventListener('click', function(){
+                                modal.style.display = 'flex';
+                                modal.setAttribute('aria-hidden','false');
+                                // 使用同一张图源，也可以替换为高分辨率图片路径
+                                modalImg.src = img.src;
+                                downloadLink.href = img.src;
+                          });
+
+                          function closeModal(){
+                                modal.style.display = 'none';
+                                modal.setAttribute('aria-hidden','true');
+                          }
+
+                          closeBtn.addEventListener('click', closeModal);
+                          // 点击模态背景也关闭（点击图片本身不关闭）
+                          modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+                          // ESC 关闭
+                          window.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+                  })();
+        </script>
 </body>
 </html>
