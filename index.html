@@ -60,13 +60,7 @@
                   <h1>历史街区调查数据可视化</h1>
                   <p>本项目旨在通过数据可视化技术，展示历史街区的调查数据，帮助用户更直观地理解和分析这些数据。</p>
 
-                  <div class="controls" style="margin:12px 0 18px 0;display:flex;gap:8px;align-items:center;">
-                          <button id="themeToggle" type="button">切换暗色/浅色</button>
-                          <button id="exportBtn" type="button">导出 PNG</button>
-                          <span id="status" style="color:var(--muted);font-size:13px;margin-left:8px"></span>
-                  </div>
-
-                  <div id="chart" style="height:360px;border-radius:6px;overflow:hidden;background:#fff"></div>
+                    <!-- ECharts 已移除：图表容器与控制按钮已删除 -->
 
                                     <footer>来源： 中国政府网之肥佬 · <time id="stamp" datetime="2025-03-05">2025-03-05 16:29</time></footer>
                                     <div style="text-align:center;margin-top:12px;">
@@ -83,107 +77,58 @@
                                     </div>
         </div>
 
-        <script src="/myweb/echarts.js"></script>
         <script>
-                  // 小型初始化脚本：示例图表、主题切换、导出，以及图片交互（hover/双击/模态/下载）
+                  // 图片交互与时间更新（已移除 ECharts 相关代码）
                   (function(){
-                          var chartDom = document.getElementById('chart');
-                          var myChart = echarts.init(chartDom);
-                          var lightOption = {
-                                backgroundColor: '#ffffff',
-                                color: ['#2c7be5','#ff7f50','#91cc75'],
-                                tooltip: { trigger: 'axis' },
-                                xAxis: { type: 'category', data: ['A区','B区','C区','D区','E区'] },
-                                yAxis: { type: 'value' },
-                                series: [
-                                      { name: '样例值', type: 'bar', data: [12, 20, 15, 34, 22] }
-                                ]
-                          };
-                          var darkOption = JSON.parse(JSON.stringify(lightOption));
-                          darkOption.backgroundColor = '#0b1220';
-                          darkOption.color = ['#4fc3f7','#ffab91','#a5d6a7'];
-                          darkOption.tooltip = { backgroundColor: 'rgba(255,255,255,0.06)', textStyle:{color:'#fff'} };
+                        // 更新 footer 时间为当前本地格式（可保留原 datetime）
+                        var stamp = document.getElementById('stamp');
+                        try{
+                              var now = new Date();
+                              var fmt = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+                              stamp.textContent = fmt;
+                              stamp.setAttribute('datetime', now.toISOString());
+                        }catch(e){ /* ignore */ }
 
-                          myChart.setOption(lightOption);
+                        // ===== 图片交互逻辑 =====
+                        var img = document.getElementById('funnyImg');
+                        var modal = document.getElementById('imgModal');
+                        var modalImg = document.getElementById('modalImg');
+                        var closeBtn = document.getElementById('closeImg');
+                        var downloadLink = document.getElementById('downloadImg');
+                        var isGray = false;
 
-                          // 主题切换（简单：切换 body 类并更新 chart）
-                          var themeToggle = document.getElementById('themeToggle');
-                          var isDark = false;
-                          themeToggle.addEventListener('click', function(){
-                                isDark = !isDark;
-                                document.body.classList.toggle('dark', isDark);
-                                if(isDark){ myChart.setOption(darkOption); document.getElementById('status').textContent='暗色模式'; }
-                                else { myChart.setOption(lightOption); document.getElementById('status').textContent='浅色模式'; }
-                                setTimeout(function(){ document.getElementById('status').textContent=''; }, 1500);
-                          });
+                        // Hover 样式通过 CSS（在行内样式外可扩展），这里加事件仅为可扩展交互
+                        img.style.transition = 'transform 220ms ease, filter 220ms ease';
+                        img.style.cursor = 'pointer';
+                        img.addEventListener('mouseenter', function(){ img.style.transform = 'scale(1.04)'; });
+                        img.addEventListener('mouseleave', function(){ img.style.transform = ''; });
 
-                          // 导出 PNG
-                          var exportBtn = document.getElementById('exportBtn');
-                          exportBtn.addEventListener('click', function(){
-                                var url = myChart.getDataURL({
-                                      type: 'png', pixelRatio: 2, backgroundColor: isDark? '#0b1220' : '#ffffff'
-                                });
-                                var a = document.createElement('a');
-                                a.href = url;
-                                a.download = 'chart.png';
-                                document.body.appendChild(a);
-                                a.click();
-                                a.remove();
-                          });
+                        // 双击切换灰度
+                        img.addEventListener('dblclick', function(){
+                              isGray = !isGray;
+                              img.style.filter = isGray ? 'grayscale(100%)' : '';
+                        });
 
-                          // 更新 footer 时间为当前本地格式（可保留原 datetime）
-                          var stamp = document.getElementById('stamp');
-                          try{
-                                var now = new Date();
-                                var fmt = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
-                                stamp.textContent = fmt;
-                                stamp.setAttribute('datetime', now.toISOString());
-                          }catch(e){ /* ignore */ }
+                        // 单击打开模态大图
+                        img.addEventListener('click', function(){
+                              modal.style.display = 'flex';
+                              modal.setAttribute('aria-hidden','false');
+                              // 使用同一张图源，也可以替换为高分辨率图片路径
+                              modalImg.src = img.src;
+                              downloadLink.href = img.src;
+                        });
 
-                          // 自适应重绘
-                          window.addEventListener('resize', function(){ myChart.resize(); });
+                        function closeModal(){
+                              modal.style.display = 'none';
+                              modal.setAttribute('aria-hidden','true');
+                        }
 
-                          // ===== 图片交互逻辑 =====
-                          var img = document.getElementById('funnyImg');
-                          var modal = document.getElementById('imgModal');
-                          var modalImg = document.getElementById('modalImg');
-                          var closeBtn = document.getElementById('closeImg');
-                          var downloadLink = document.getElementById('downloadImg');
-                          var isGray = false;
-
-                          // Hover 样式通过 CSS（在行内样式外可扩展），这里加事件仅为可扩展交互
-                          img.style.transition = 'transform 220ms ease, filter 220ms ease';
-                          img.style.cursor = 'pointer';
-                          img.addEventListener('mouseenter', function(){ img.style.transform = 'scale(1.04)'; });
-                          img.addEventListener('mouseleave', function(){ img.style.transform = ''; });
-
-                          // 双击切换灰度
-                          img.addEventListener('dblclick', function(){
-                                isGray = !isGray;
-                                img.style.filter = isGray ? 'grayscale(100%)' : '';
-                          });
-
-                          // 单击打开模态大图
-                          img.addEventListener('click', function(){
-                                modal.style.display = 'flex';
-                                modal.setAttribute('aria-hidden','false');
-                                // 使用同一张图源，也可以替换为高分辨率图片路径
-                                modalImg.src = img.src;
-                                downloadLink.href = img.src;
-                          });
-
-                          function closeModal(){
-                                modal.style.display = 'none';
-                                modal.setAttribute('aria-hidden','true');
-                          }
-
-                          closeBtn.addEventListener('click', closeModal);
-                          // 点击模态背景也关闭（点击图片本身不关闭）
-                          modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
-                          // ESC 关闭
-                          window.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+                        closeBtn.addEventListener('click', closeModal);
+                        // 点击模态背景也关闭（点击图片本身不关闭）
+                        modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+                        // ESC 关闭
+                        window.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
 
                   })();
         </script>
-</body>
 </html>
