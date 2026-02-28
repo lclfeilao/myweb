@@ -152,27 +152,49 @@
                   display: flex;
                   gap: 14px;
                   justify-content: center;
-                  align-items: center;
+                  align-items: stretch;
                   margin-top: 32px;
                   flex-wrap: wrap;
                   margin-bottom: 24px;
             }
-            
+
+            .image-wrapper {
+                  max-width: 340px;
+                  width: calc(50% - 14px);
+                  background: #fff;
+                  border-radius: 8px;
+                  overflow: hidden;
+                  box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+            }
+
+            .interactive-img {
+                  display: block;
+                  width: 100%;
+                  height: auto;
+                  object-fit: cover;
+                  border-radius: 6px;
+            }
+
+            /* ensure container has bottom padding so footer won't overlap */
+            .container { padding-bottom: 64px; }
+
+            @media (max-width: 900px) {
+                  .image-wrapper { width: calc(50% - 14px); }
+            }
+
             @media (max-width: 600px){
                   .image-container-wrapper {
                         margin-top: 24px;
                         margin-bottom: 20px;
                   }
-            }
-            
-            @media (max-width: 480px){
-                  .image-container-wrapper {
-                        margin-top: 20px;
-                        margin-bottom: 16px;
+                  .image-wrapper {
+                        width: 100%;
+                        max-width: 100%;
+                        margin-bottom: 8px;
                   }
-            }
-            
-            @media (max-width: 600px){
                   .last{
                         margin-top: 40px;
                         margin-bottom: 16px;
@@ -181,8 +203,13 @@
                         line-height: 1.8;
                   }
             }
-            
+
             @media (max-width: 480px){
+                  .image-container-wrapper {
+                        margin-top: 20px;
+                        margin-bottom: 16px;
+                  }
+                  .image-wrapper { width: 100%; }
                   .last{
                         font-size: 11px;
                         margin-top: 32px;
@@ -190,6 +217,21 @@
                         padding: 10px 8px;
                         line-height: 1.6;
                   }
+            }
+
+            /* Modal 样式（集中管理） */
+            #imgModal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(6,12,24,0.85); align-items:center; justify-content:center; padding:16px; backdrop-filter: blur(6px); }
+            #imgModal .modal-inner { position:relative; max-width:1200px; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:12px; }
+            #modalImg { max-width:100%; max-height:calc(100vh - 160px); border-radius:10px; box-shadow:0 20px 50px rgba(0,0,0,0.6); }
+            #closeImg, #downloadImg { position:absolute; top:18px; background:#ffffff; padding:10px 12px; border-radius:8px; text-decoration:none; color:#111; box-shadow:0 6px 18px rgba(0,0,0,0.12); cursor:pointer; border:0; font-weight:600; }
+            #closeImg { right:18px; }
+            #downloadImg { right:98px; display:inline-flex; align-items:center; gap:6px; }
+
+            @media (max-width: 480px) {
+                  #modalImg { max-height: calc(100vh - 120px); }
+                  #closeImg, #downloadImg { top:12px; padding:8px 10px; }
+                  #closeImg { right:12px; }
+                  #downloadImg { right:72px; }
             }
       </style>
 </head>
@@ -408,17 +450,16 @@
 
                                     <footer >来源： 肥佬 · <time id="stamp" datetime="2025-03-05">2025-03-05 16:29</time></footer>
                                     <div class="image-container-wrapper">
-                                          <img id="funnyImg" src="/myweb/fat2.jpg" alt="肥水图片" class="interactive-img" style="max-width:320px;width:60%;height:auto;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);" />
-                                          <img id="funnyImg2" src="/myweb/fat3.jpg" alt="肥水图片2" class="interactive-img" style="max-width:320px;width:60%;height:auto;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);" />
-                                    </div>
+                                          <div class="image-wrapper"><img id="funnyImg" src="/myweb/fat2.jpg" alt="肥水图片" class="interactive-img" /></div>
+                                          <div class="image-wrapper"><img id="funnyImg2" src="/myweb/fat3.jpg" alt="肥水图片2" class="interactive-img" /></div>
                                     </div>
 
                                     <!-- 图片模态大图 -->
-                                    <div id="imgModal" class="img-modal" aria-hidden="true" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,12,24,0.75);align-items:center;justify-content:center;padding:24px;">
-                                          <div style="position:relative;max-width:1200px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-                                                <img id="modalImg" src="/myweb/fat2.jpg" alt="放大图" style="max-width:100%;max-height:100%;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
-                                                <button id="closeImg" aria-label="关闭" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);border:0;padding:8px 10px;border-radius:6px;cursor:pointer">关闭</button>
-                                                <a id="downloadImg" download="/myweb/fat3.jpg" style="position:absolute;top:12px;right:84px;background:rgba(255,255,255,0.9);padding:8px 10px;border-radius:6px;text-decoration:none;color:#111;">下载</a>
+                                    <div id="imgModal" class="img-modal" aria-hidden="true">
+                                          <div class="modal-inner">
+                                                <img id="modalImg" src="/myweb/fat2.jpg" alt="放大图" />
+                                                <button id="closeImg" aria-label="关闭">✕ 关闭</button>
+                                                <a id="downloadImg" download="/myweb/fat3.jpg">↓ 下载</a>
                                           </div>
                                     </div>
                                     <div class="last">
