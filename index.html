@@ -42,10 +42,26 @@
                   margin-top: 20px;
                   font-size: 13px;
                   color: var(--muted);
+                  word-wrap: break-word;
+                  overflow-wrap: break-word;
             }
+            
             @media (max-width: 600px){
                   .container{margin: 16px;padding: 16px}
                   h1{font-size: 20px}
+                  footer{
+                        margin-top: 16px;
+                        font-size: 12px;
+                        line-height: 1.8;
+                  }
+            }
+            
+            @media (max-width: 480px){
+                  footer{
+                        font-size: 11px;
+                        margin-top: 12px;
+                        padding: 12px 0;
+                  }
             }
             .interactive-img{
                width:50%;
