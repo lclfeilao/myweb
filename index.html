@@ -19,6 +19,9 @@
                   font-family: "Segoe UI", Roboto, "PingFang SC", "Microsoft Yahei", sans-serif;
                   background-color: var(--muted);
             }
+
+            /* make sizing predictable for responsive layout */
+            * { box-sizing: border-box; }
             .container{
                   max-width: var(--max-width);
                   margin:  auto;
@@ -89,45 +92,48 @@
                    box-shadow: 0 6px 10px rgba(12,38,63,0.08);
             }
             
-            /* 热量表样式 */
+            /* 热量表样式 - 改进响应式以避免在小屏溢出 */
             .calorie-table {
                   margin-top: 24px;
                   overflow-x: auto;
+                  -webkit-overflow-scrolling: touch;
+                  padding-bottom: 6px;
             }
-            
+
             .calorie-table table {
                   width: 100%;
+                  max-width: 100%;
                   border-collapse: collapse;
                   background: #ffffff;
                   border-radius: 6px;
                   overflow: hidden;
+                  table-layout: fixed; /* enable cell wrapping */
+                }
+
+            .calorie-table th, .calorie-table td {
+                  padding: 10px 12px;
+                  border-bottom: 1px solid #e5e7eb;
+                  font-size: 14px;
+                  word-break: break-word;
+                  white-space: normal;
             }
-            
+
             .calorie-table th {
                   background: #2c7be5;
                   color: white;
-                  padding: 12px;
                   text-align: left;
                   font-weight: 600;
                   font-size: 14px;
             }
-            
-            .calorie-table td {
-                  padding: 10px 12px;
-                  border-bottom: 1px solid #e5e7eb;
-                  font-size: 14px;
-            }
-            
-            .calorie-table tr:last-child td {
-                  border-bottom: none;
-            }
-            
-            .calorie-table tr:nth-child(even) {
-                  background: #f9fafb;
-            }
-            
-            .calorie-table tr:hover {
-                  background: #f3f4f6;
+
+            .calorie-table tr:last-child td { border-bottom: none; }
+            .calorie-table tr:nth-child(even) { background: #f9fafb; }
+            .calorie-table tr:hover { background: #f3f4f6; }
+
+            /* 特殊处理：当屏幕很窄时，减少单元格内边距并改为自动布局 */
+            @media (max-width: 480px) {
+                  .calorie-table th, .calorie-table td { padding: 8px 8px; font-size: 13px; }
+                  .calorie-table table { table-layout: auto; }
             }
             .last{
                   margin-top: 48px;
