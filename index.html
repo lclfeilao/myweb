@@ -3,26 +3,26 @@
 <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>臭肥佬</title>
+      <title>记得减肥</title>
       <style>
             :root{
                   --max-width: 980px;
                   --bg: #f7f9fc;
                   --card: #ffffff;
-                  --accent: #2c7be5;
-                  --muted: #6c757d;
+                  --accent: #8e8c0d;
+                  --muted: #0a0a0a;
             }
             html, body {
-                  height: 100%;
+                  height: 200%;
                   margin: 0;
                   padding: 0;
                   font-family: "Segoe UI", Roboto, "PingFang SC", "Microsoft Yahei", sans-serif;
-                  background: var(--bg);
-                  color: #111;
+                  background-color: var(--muted);
             }
             .container{
                   max-width: var(--max-width);
-                  margin: 32px auto;
+                  margin:  auto;
+                  height:100%;
                   padding: 24px;
                   background: var(--card);
                   border-radius: 8px;
@@ -47,84 +47,447 @@
                   .container{margin: 16px;padding: 16px}
                   h1{font-size: 20px}
             }
-            img{
+            .interactive-img{
                width:50%;
                height:auto;
-               margin-left: 25%;
-               margin-right: 25%;
+               margin-left: 1%;
+               margin-right: 1%;
+               display: flex;
+            }
+            .zaocao{
+                  padding: 16px;
+                  background: #f1f3f5;
+                  border-radius: 6px;
+                   box-shadow: 0 6px 10px rgba(12,38,63,0.08);
+            }
+            .zhongcan{
+                  margin-top: 24px;
+                  padding: 16px;
+                  background: #f1f3f5;
+                  border-radius: 6px;
+                  box-shadow: 0 6px 10px rgba(161, 6, 40, 0.08);
+            }
+            .wancan{
+                  margin-top: 24px;
+                  padding: 16px;
+                  background: #f1f3f5;
+                  border-radius: 6px;
+                  box-shadow: 0 6px 10px rgba(8, 73, 22, 0.08);
+            }
+            .can{ padding: 16px;
+                  display: flex;
+                  flex-direction: column;
+                   border-radius: 8px;
+                  box-shadow: 0 8px 20px rgba(12,38,63,0.08);
+                  background-color: #ffffff;
+            }
+            .yundong{
+                  margin-top: 32px;
+                  padding: 16px;
+                  background:#ffffff;
+                  border-radius: 6px;
+                   box-shadow: 0 6px 10px rgba(12,38,63,0.08);
+            }
+            
+            /* 热量表样式 */
+            .calorie-table {
+                  margin-top: 24px;
+                  overflow-x: auto;
+            }
+            
+            .calorie-table table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  background: #ffffff;
+                  border-radius: 6px;
+                  overflow: hidden;
+            }
+            
+            .calorie-table th {
+                  background: #2c7be5;
+                  color: white;
+                  padding: 12px;
+                  text-align: left;
+                  font-weight: 600;
+                  font-size: 14px;
+            }
+            
+            .calorie-table td {
+                  padding: 10px 12px;
+                  border-bottom: 1px solid #e5e7eb;
+                  font-size: 14px;
+            }
+            
+            .calorie-table tr:last-child td {
+                  border-bottom: none;
+            }
+            
+            .calorie-table tr:nth-child(even) {
+                  background: #f9fafb;
+            }
+            
+            .calorie-table tr:hover {
+                  background: #f3f4f6;
+            }
+            .last{
+                  margin-top:10px;
+                  padding: 16px;
+                  background:#414629;
+                  border-radius: 6px;
+                   box-shadow: 0 6px 10px rgba(12,38,63,0.08);
+                  text-align: center;
             }
       </style>
 </head>
 <body>
         <div class="container">
-                  <h1>历史街区调查数据可视化</h1>
-                  <p>本项目旨在通过数据可视化技术，展示历史街区的调查数据，帮助用户更直观地理解和分析这些数据。</p>
+                  <h1>减肥规划</h1>
+                  <p>本项目旨在通过展示最肥水的人类以此警示要加强减肥</p>
+                  <div class="can">
+                        <h2>饮食：</h2>
+                         <p>1. 控制总热量摄入：减肥的核心是热量赤字，即消耗的热量大于摄入的热量。每天减少500-750千卡的摄入，这样每周可以减掉约0.5-1公斤。</p>
+                         <p>2. 增加蛋白质摄入：蛋白质有助于增加饱腹感，减少肌肉流失，同时促进新陈代谢。建议每餐都包含优质蛋白质来源，如鸡肉、鱼、豆腐、蛋类等。</p>
+                         <p>3. 多吃蔬菜和水果：蔬菜和水果富含纤维、维生素和矿物质，能增加饱腹感并提供必要的营养。建议每天至少摄入5份不同种类的蔬菜和水果。</p>
+                         <p>4. 控制碳水化合物摄入：选择复杂碳水化合物，如全谷物、糙米、燕麦等，避免精制碳水化合物如白面包、糖果等，这些会导致血糖快速升高和脂肪积累。</p>
+                         <p>5. 注意饮食结构：合理搭配三大营养素（蛋白质、脂肪、碳水化合物），避免过度依赖某一类食物，保持饮食多样化。</p>
+                         <p>6.8+16进食法，早餐，中餐，晚餐在8小时内吃完，其余时间不吃东西，如果实在饿了可以喝点水或茶，再不行，睡觉。（如果实在坚持不下来，可以吃一些餐间零食，但一定要保证总热量不超）</p>
+                  <div class="zaocao">
+                        <h3>早餐</h3>
+                        <p>一份营养均衡的早餐有助于控制体重，建议包含蛋白质、纤维和健康脂肪。</p>
+                         <p><strong>规划：</strong>两个鸡蛋，一片全麦面包（可替换为其他碳水，如麦片），一杯牛奶和一些水果（可无，建议选择低糖水果，如苹果或蓝莓），有条件可以加一些坚果。</p>
+                         <p>早餐热量：约300-400千卡（最后将附上热量计算方式）</p>
+                  </div>
+                  <div class="zhongcan">
+                        <h3>午餐</h3>
+                        <p>午餐是一天中最重要的一餐，建议摄入足够的蛋白质和蔬菜，同时控制碳水化合物的摄入量。</p>
+                         <p><strong>规划：</strong>足量的蛋白质（如鸡肉、鱼或豆腐，可以吃红肉，但要多吃白肉），足量纤维素（如西兰花、胡萝卜或菠菜、菜花）,适量碳水（多吃杂粮，可以一餐精制碳水一餐杂粮，碳水总量150g左右），注意控油控盐，煮菜方式避免煎炸炒等技法，多用炖、烩、蒸等技法，少喝高汤，注意尿酸！！！。</p>
+                         <p>午餐热量：约500-600千卡（最后将附上热量计算方式）</p>   
+                  </div>
+                  <div class="wancan">
+                        <h3>晚餐</h3>
+                        <p>晚餐建议以清淡为主，避免过多的碳水化合物和高热量食物，以促进夜间的脂肪燃烧。</p>
+                         <p><strong>规划：</strong>以蛋白质和蔬菜为主，适量碳水（建议控制在120g以下），可以选择一些低GI的碳水来源，如糙米、全麦面包或红薯。晚餐后避免吃零食，尤其是高糖高脂的零食。原理同午餐</p>
+                         <p>晚餐热量：约400-500千卡（最后将附上热量计算方式）</p>
 
-                    <!-- ECharts 已移除：图表容器与控制按钮已删除 -->
+                  </div>
+                  </div>
+                  <div class="yundong">
+                        <div>
+                              <h2>运动：</h2>
+                              <p>1. 有氧运动：如快走、慢跑，尽量每周至少进行150分钟中等强度的有氧运动。</p>
+                              <p>2. 力量训练：每周进行2-3次力量训练，锻炼主要肌群，，有助于增加肌肉量，提高基础代谢率。</p>
+                              <p>3.柔韧性训练：如瑜伽、拉伸运动，有助于提高身体柔韧性，减少运动损伤风险，也可以消耗一定的热量。</p>
+                              <p>4. 买好护具：护膝护踝有需要就买。</p>
+                              <div>
+                                  <p><a href="https://www.bilibili.com/video/BV1dM411T7Va/?spm_id_from=333.337.search-card.all.click&vd_source=758cc4c68114f3ae24cfbb25a0cdef51" target="_blank">关于拉伸，有个参考。跟不上别硬做！！！</a></p>
+                                  <p><a href="https://www.bilibili.com/video/BV1Cv411r779/?spm_id_from=333.337.search-card.all.click&vd_source=758cc4c68114f3ae24cfbb25a0cdef51" target="_blank">关于力量训练，有个参考。跟不上别硬做！！！</a></p>
+                              </div>
+                        </div>
+                  </div>
+                   <div class="zongjie" style="margin-top:32px;padding:16px;background:#f1f3f5;border-radius:6px;box-shadow:0 6px 10px rgba(12,38,63,0.08);">
+                        <div>
+                              <h2>总结：</h2>
+                              <p>减肥是一个综合性的过程，饮食和运动同等重要。通过合理控制饮食摄入和增加身体活动，可以有效地实现减肥目标。同时，保持良好的生活习惯，如充足的睡眠和压力管理，也对减肥有积极的影响。记得减肥是为了更健康的生活，而不是单纯追求外貌的改变，保持积极的心态和科学的方法才是最重要的。一定要坚持，每周记录体重，有毅力，相信自己一定成功！！！</p>
+                              
+                              <h3 style="margin-top: 28px; margin-bottom: 16px; color: #0a0a0a;">常见食物热量对照表</h3>
+                              <div class="calorie-table">
+                                    <table>
+                                          <thead>
+                                                <tr>
+                                                      <th>食物名称</th>
+                                                      <th>份量</th>
+                                                      <th>热量(千卡)</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <td><strong>主食类</strong></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                </tr>
+                                                <tr>
+                                                      <td>白米饭</td>
+                                                      <td>100g</td>
+                                                      <td>130</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>糙米/全麦饭</td>
+                                                      <td>100g</td>
+                                                      <td>110</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>面条</td>
+                                                      <td>100g</td>
+                                                      <td>140</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>全麦面包</td>
+                                                      <td>1片(30g)</td>
+                                                      <td>80</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>燕麦片</td>
+                                                      <td>50g</td>
+                                                      <td>180</td>
+                                                </tr>
+                                                <tr>
+                                                      <td><strong>肉类/蛋白质</strong></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                </tr>
+                                                <tr>
+                                                      <td>鸡胸肉</td>
+                                                      <td>100g</td>
+                                                      <td>165</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>瘦牛肉</td>
+                                                      <td>100g</td>
+                                                      <td>180</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>三文鱼</td>
+                                                      <td>100g</td>
+                                                      <td>208</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>白鱼</td>
+                                                      <td>100g</td>
+                                                      <td>82</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>鸡蛋</td>
+                                                      <td>1个(50g)</td>
+                                                      <td>78</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>豆腐</td>
+                                                      <td>100g</td>
+                                                      <td>88</td>
+                                                </tr>
+                                                <tr>
+                                                      <td><strong>蔬菜类</strong></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                </tr>
+                                                <tr>
+                                                      <td>西兰花</td>
+                                                      <td>100g</td>
+                                                      <td>34</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>菠菜</td>
+                                                      <td>100g</td>
+                                                      <td>25</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>胡萝卜</td>
+                                                      <td>100g</td>
+                                                      <td>41</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>番茄</td>
+                                                      <td>100g</td>
+                                                      <td>18</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>黄瓜</td>
+                                                      <td>100g</td>
+                                                      <td>16</td>
+                                                </tr>
+                                                <tr>
+                                                      <td><strong>水果类</strong></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                </tr>
+                                                <tr>
+                                                      <td>苹果</td>
+                                                      <td>1个(150g)</td>
+                                                      <td>77</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>香蕉</td>
+                                                      <td>1个(100g)</td>
+                                                      <td>89</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>蓝莓</td>
+                                                      <td>100g</td>
+                                                      <td>57</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>葡萄</td>
+                                                      <td>100g</td>
+                                                      <td>67</td>
+                                                </tr>
+                                                <tr>
+                                                      <td><strong>饮品/其他</strong></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                </tr>
+                                                <tr>
+                                                      <td>牛奶(低脂)</td>
+                                                      <td>200ml</td>
+                                                      <td>98</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>酸奶</td>
+                                                      <td>100g</td>
+                                                      <td>59</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>花生</td>
+                                                      <td>10粒(10g)</td>
+                                                      <td>57</td>
+                                                </tr>
+                                                <tr>
+                                                      <td>杏仁</td>
+                                                      <td>23粒(28g)</td>
+                                                      <td>161</td>
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                              </div>
+                        </div>
+                   </div>
 
-                                    <footer>来源： 中国政府网之肥佬 · <time id="stamp" datetime="2025-03-05">2025-03-05 16:29</time></footer>
-                                    <div style="text-align:center;margin-top:12px;">
-                                          <img id="funnyImg"  alt="fatimg" class="interactive-img" style="max-width:320px;width:60%;height:auto;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);" />
+
+                                    <footer>来源： 肥佬 · <time id="stamp" datetime="2025-03-05">2025-03-05 16:29</time></footer>
+                                    <div style="display:flex;gap:14px;justify-content:center;align-items:center;margin-top:12px;flex-wrap:wrap;">
+                                          <img id="funnyImg" src="/myweb/fat2.jpg" alt="肥水图片" class="interactive-img" style="max-width:320px;width:60%;height:auto;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);" />
+                                          <img id="funnyImg2" src="/myweb/fat3.jpg" alt="肥水图片2" class="interactive-img" style="max-width:320px;width:60%;height:auto;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08);" />
+                                    </div>
                                     </div>
 
                                     <!-- 图片模态大图 -->
-                                    
+                                    <div id="imgModal" class="img-modal" aria-hidden="true" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,12,24,0.75);align-items:center;justify-content:center;padding:24px;">
+                                          <div style="position:relative;max-width:1200px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                                                <img id="modalImg" src="/myweb/fat2.jpg" alt="放大图" style="max-width:100%;max-height:100%;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
+                                                <button id="closeImg" aria-label="关闭" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);border:0;padding:8px 10px;border-radius:6px;cursor:pointer">关闭</button>
+                                                <a id="downloadImg" download="/myweb/fat3.jpg" style="position:absolute;top:12px;right:84px;background:rgba(255,255,255,0.9);padding:8px 10px;border-radius:6px;text-decoration:none;color:#111;">下载</a>
+                                          </div>
+                                    </div>
+                                    <div class="last">
+                                            <p>&#169此网站版权为小肥佬所有，减不下来是你的问题</p>
+                                    </div>
         </div>
 
         <script>
-                  // 图片交互与时间更新（已移除 ECharts 相关代码）
                   (function(){
-                        // 更新 footer 时间为当前本地格式（可保留原 datetime）
-                        var stamp = document.getElementById('stamp');
-                        try{
-                              var now = new Date();
-                              var fmt = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
-                              stamp.textContent = fmt;
-                              stamp.setAttribute('datetime', now.toISOString());
-                        }catch(e){ /* ignore */ }
-
-                        // ===== 图片交互逻辑 =====
-                        var img = document.getElementById('funnyImg');
-                        var modal = document.getElementById('imgModal');
-                        var modalImg = document.getElementById('modalImg');
-                        var closeBtn = document.getElementById('closeImg');
-                        var downloadLink = document.getElementById('downloadImg');
-                        var isGray = false;
-
-                        // Hover 样式通过 CSS（在行内样式外可扩展），这里加事件仅为可扩展交互
-                        img.style.transition = 'transform 220ms ease, filter 220ms ease';
-                        img.style.cursor = 'pointer';
-                        img.addEventListener('mouseenter', function(){ img.style.transform = 'scale(1.04)'; });
-                        img.addEventListener('mouseleave', function(){ img.style.transform = ''; });
-
-                        // 双击切换灰度
-                        img.addEventListener('dblclick', function(){
-                              isGray = !isGray;
-                              img.style.filter = isGray ? 'grayscale(100%)' : '';
-                        });
-
-                        // 单击打开模态大图
-                        img.addEventListener('click', function(){
-                              modal.style.display = 'flex';
-                              modal.setAttribute('aria-hidden','false');
-                              // 使用同一张图源，也可以替换为高分辨率图片路径
-                              modalImg.src = img.src;
-                              downloadLink.href = img.src;
-                        });
-
-                        function closeModal(){
-                              modal.style.display = 'none';
-                              modal.setAttribute('aria-hidden','true');
+                        // ===== 1. 时间更新模块 =====
+                        function updateTimestamp() {
+                              const stamp = document.getElementById('stamp');
+                              if (!stamp) return;
+                              
+                              try {
+                                    const now = new Date();
+                                    const fmt = [
+                                          now.getFullYear(),
+                                          String(now.getMonth() + 1).padStart(2, '0'),
+                                          String(now.getDate()).padStart(2, '0')
+                                    ].join('-') + ' ' + [
+                                          String(now.getHours()).padStart(2, '0'),
+                                          String(now.getMinutes()).padStart(2, '0')
+                                    ].join(':');
+                                    
+                                    stamp.textContent = fmt;
+                                    stamp.setAttribute('datetime', now.toISOString());
+                              } catch (e) {
+                                    console.warn('时间更新失败:', e);
+                              }
                         }
 
-                        closeBtn.addEventListener('click', closeModal);
-                        // 点击模态背景也关闭（点击图片本身不关闭）
-                        modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
-                        // ESC 关闭
-                        window.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+                        // ===== 2. 图片交互模块 =====
+                        const ImageInteraction = {
+                              imgs: [],
+                              modal: document.getElementById('imgModal'),
+                              modalImg: document.getElementById('modalImg'),
+                              closeBtn: document.getElementById('closeImg'),
+                              downloadLink: document.getElementById('downloadImg'),
+                              
+                              init() {
+                                    if (!this.modal || !this.modalImg) return;
+                                    
+                                    this.imgs = document.querySelectorAll('.interactive-img');
+                                    this.setupImageStyles();
+                                    this.bindImageEvents();
+                                    this.bindModalEvents();
+                              },
+                              
+                              setupImageStyles() {
+                                    this.imgs.forEach(img => {
+                                          img.dataset.isGray = 'false';
+                                          img.style.transition = 'transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 200ms ease';
+                                          img.style.cursor = 'pointer';
+                                    });
+                              },
+                              
+                              bindImageEvents() {
+                                    this.imgs.forEach(img => {
+                                          img.addEventListener('mouseenter', () => {
+                                                img.style.transform = 'scale(1.05)';
+                                          });
+                                          
+                                          img.addEventListener('mouseleave', () => {
+                                                img.style.transform = '';
+                                          });
+                                          
+                                          img.addEventListener('dblclick', (e) => {
+                                                e.stopPropagation();
+                                                this.toggleGrayscale(img);
+                                          });
+                                          
+                                          img.addEventListener('click', (e) => {
+                                                e.stopPropagation();
+                                                this.openModal(img);
+                                          });
+                                    });
+                              },
+                              
+                              toggleGrayscale(img) {
+                                    const isGray = img.dataset.isGray === 'true';
+                                    img.dataset.isGray = (!isGray).toString();
+                                    img.style.filter = !isGray ? 'grayscale(100%)' : '';
+                              },
+                              
+                              openModal(img) {
+                                    const highRes = img.getAttribute('data-highres') || img.src;
+                                    this.modalImg.src = highRes;
+                                    this.downloadLink.href = highRes;
+                                    this.downloadLink.download = highRes.split('/').pop() || 'image.jpg';
+                                    
+                                    this.modal.style.display = 'flex';
+                                    this.modal.setAttribute('aria-hidden', 'false');
+                                    document.body.style.overflow = 'hidden';
+                              },
+                              
+                              closeModal() {
+                                    this.modal.style.display = 'none';
+                                    this.modal.setAttribute('aria-hidden', 'true');
+                                    document.body.style.overflow = '';
+                              },
+                              
+                              bindModalEvents() {
+                                    this.closeBtn?.addEventListener('click', () => this.closeModal());
+                                    
+                                    this.modal.addEventListener('click', (e) => {
+                                          if (e.target === this.modal) this.closeModal();
+                                    });
+                                    
+                                    document.addEventListener('keydown', (e) => {
+                                          if (e.key === 'Escape' && this.modal.getAttribute('aria-hidden') === 'false') {
+                                                this.closeModal();
+                                          }
+                                    });
+                              }
+                        };
+
+                        // ===== 3. 初始化 =====
+                        document.addEventListener('DOMContentLoaded', () => {
+                              updateTimestamp();
+                              ImageInteraction.init();
+                        });
 
                   })();
         </script>
 </html>
-
-
