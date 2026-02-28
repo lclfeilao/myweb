@@ -25,8 +25,11 @@
             .container{
                   max-width: var(--max-width);
                   margin:  auto;
-                  height:100%;
+                  /* allow content to determine height */
+                  height: auto;
+                  min-height: 100vh;
                   padding: 24px;
+                  padding-bottom: 24px;
                   background: var(--card);
                   border-radius: 8px;
                   box-shadow: 0 6px 18px rgba(12,38,63,0.08);
@@ -136,7 +139,7 @@
                   .calorie-table table { table-layout: auto; }
             }
             .last{
-                  margin-top: 48px;
+                  margin-top: 32px;
                   margin-bottom: 24px;
                   padding: 16px 12px;
                   background:#414629;
@@ -151,6 +154,11 @@
             
             .last time {
                   color: #ffffff;
+            }
+
+            /* 给总结部分底部间距，避免与后续元素紧贴 */
+            .zongjie {
+                  margin-bottom: 28px;
             }
             
             /* 图片容器响应式 */
@@ -202,11 +210,12 @@
                         margin-bottom: 8px;
                   }
                   .last{
-                        margin-top: 40px;
-                        margin-bottom: 16px;
-                        padding: 12px 8px;
+                        bottom: 12px;
+                        width: calc(100% - 24px);
+                        padding: 10px 12px;
                         font-size: 12px;
-                        line-height: 1.8;
+                        line-height: 1.6;
+                        border-radius: 8px;
                   }
             }
 
@@ -217,11 +226,12 @@
                   }
                   .image-wrapper { width: 100%; }
                   .last{
+                        bottom: 10px;
+                        width: calc(100% - 20px);
                         font-size: 11px;
-                        margin-top: 32px;
-                        margin-bottom: 12px;
-                        padding: 10px 8px;
-                        line-height: 1.6;
+                        padding: 8px 10px;
+                        line-height: 1.5;
+                        border-radius: 6px;
                   }
             }
 
